@@ -1,9 +1,7 @@
-  # def create_guess_array 
-  #   arr = []
-  #   i = 0
-  #   for i in in 0..@the_word.length do 
-  #     puts i
+  # def game_over?
+  #   if out_of_guesses?
+  #     puts "Game over"
+  #   exit
+
   #   end
   # end
-
-
