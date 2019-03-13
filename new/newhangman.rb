@@ -11,30 +11,39 @@ class Game
     @the_word = @word.random_word() 
     @guesses = []
     @correct_guesses = create_guess_array()
-   
     @count_guesses = 0
     @max_guesses = 8
 
-    display_status()
+    display_status() # start game loop
   end
 
   def display_status
-    print "#{@correct_guesses} \n \n \n"
-    puts "Remaining guesses : #{@max_guesses - @count_guesses}"
+    print "#{@correct_guesses}\n \n"
+    puts "Remaining guesses : #{@max_guesses - @count_guesses}\n\n"
     get_user_guess()
   end
 
-  def end_game
+  def no_guesses_left
     puts "Out of guesses, the correct word was #{@the_word}"
+    exit
+  end
+
+  def victory
+    puts "You win"
     exit
   end
 
   def get_user_guess
     if @rules.out_of_guesses?(@count_guesses, @max_guesses)
-      end_game()
+      no_guesses_left()
     end
+    
+    if @rules.correct_word?(@correct_guesses)
+      victory()
+    end
+    # end
 
-    puts "Guess a letter"
+    puts "Guess a letter\n"
     guess = gets.chomp.downcase
     if guess[0] =~ /[a-z]/
       add_to_guesses(guess[0]) 
@@ -96,19 +105,13 @@ class Rules
       return newarr
   end
 
-  def game_over?
-   
-  end
-
-
   def out_of_guesses? (guess_count, guess_max)
     return guess_count == guess_max
   end
 
-  def correct_word?
-
+  def correct_word? (guessed_word) # negated.. 
+    !guessed_word.include?("_")
   end
-
 
 end
 
