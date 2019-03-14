@@ -61,10 +61,6 @@ end
 
 
 
-def guessed_before?(letter, guesses)
-  guesses.include?(letter)
-end
 
-guesses = ["a", "b"]
 
-p guessed_before?("c", guesses)
+p out_of_guesses?(2, 2)

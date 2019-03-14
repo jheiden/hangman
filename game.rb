@@ -1,3 +1,5 @@
+require_relative 'word.rb'
+require_relative 'rules.rb'
 
 class Game
 
@@ -41,8 +43,7 @@ class Game
     if @rules.correct_word?(@correct_guesses)
       victory()
     end
-    # end
-
+    
     puts "Guess a letter\n"
     guess = gets.chomp.downcase
     if guess[0] =~ /[a-z]/
@@ -89,52 +90,6 @@ class Game
 
 end
 
-class Rules
-
-  def guessed_before?(guesses_arr, letter)
-    return guesses_arr.include?(letter)
-  end
-  
-  def correct_guess?(word, letter)
-    newarr = []
-    word.split("").each_with_index do |item, index|
-      if item == letter
-        newarr << index
-    end
-      end
-      return newarr
-  end
-
-  def out_of_guesses? (guess_count, guess_max)
-    return guess_count == guess_max
-  end
-
-  def correct_word? (guessed_word) # negated.. 
-    !guessed_word.include?("_")
-  end
-
-end
-
-class Word
-
-  attr_accessor :wordbook
-
-  def initialize
-    @wordbook = filter_words(File.read("5desk.txt"))
-  end
-
-  def filter_words(str)
-    return str.split(" ").select{|word| word.length >= 5 && word.length <= 12}
-  end
-
-  def random_word
-    return @wordbook[rand(wordbook.length - 1)].downcase
-  end
-
-end
-
-
-
 k = Game.new
-m = Rules.new
+
 
