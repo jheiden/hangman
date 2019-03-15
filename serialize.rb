@@ -1,7 +1,5 @@
 require 'json'
 
-
-
 class Serialize
 
   attr_accessor :json_obj

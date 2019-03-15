@@ -97,7 +97,6 @@ class Game
     arr.fill("_", 0..@the_word.length - 1)
   end
 
-
   def add_to_correct_guesses letter
     index_array = @rules.correct_guess?(@the_word, letter)
     if index_array.length == 0

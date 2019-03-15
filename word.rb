@@ -3,7 +3,7 @@ class Word
   attr_accessor :wordbook
 
   def initialize
-    @wordbook = filter_words(File.read("5desk.txt"))
+    @wordbook = filter_words(File.read("data/5desk.txt"))
   end
 
   def filter_words(str)
