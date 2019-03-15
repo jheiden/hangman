@@ -12,15 +12,13 @@ class Game
     @rules = Rules.new
     @word = Word.new
     @serialize = Serialize.new
-    
     @the_word = @word.random_word() 
     @guesses = []
     @correct_guesses = create_guess_array()
     @count_guesses = 0
     @max_guesses = 8
-
     start_game()
-    # display_status() # start game loop
+  
   end
 
   def start_game

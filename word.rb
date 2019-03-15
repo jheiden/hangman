@@ -7,7 +7,7 @@ class Word
   end
 
   def filter_words(str)
-    return str.split(" ").select{|word| word.length >= 5 && word.length <= 12}
+    return str.split(" ").select{|word| word.length >= 5 && word.length <= 8}
   end
 
   def random_word
