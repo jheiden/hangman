@@ -1,5 +1,6 @@
 require_relative 'word.rb'
 require_relative 'rules.rb'
+require 'json'
 
 class Game
 
@@ -15,8 +16,19 @@ class Game
     @correct_guesses = create_guess_array()
     @count_guesses = 0
     @max_guesses = 8
+    start_game()
+    # display_status() # start game loop
+  end
 
-    display_status() # start game loop
+  def start_game
+    puts "Welcome to Hangman. Would you like to load a previously saved game? Use :load o/w enter."
+    input = gets.chomp
+    if input == ":load"
+      # @serialize.load_game()
+      puts "Loading game.."
+    else
+      display_status()
+    end
   end
 
   def display_status
@@ -39,22 +51,24 @@ class Game
     if @rules.out_of_guesses?(@count_guesses, @max_guesses)
       no_guesses_left()
     end
-    
     if @rules.correct_word?(@correct_guesses)
       victory()
     end
-    
     puts "Guess a letter\n"
     guess = gets.chomp.downcase
-    if guess[0] =~ /[a-z]/
+    if guess == ":save"
+      puts "Game saved"
+      exit
+    end
+    if guess[0] =~ /[a-z]/ || guess[0] == ":"
       add_to_guesses(guess[0]) 
       add_to_correct_guesses(guess)
     else
       puts "Must be a character between a-z"
       get_user_guess()
     end
-    increment_guess_count()
-    display_status()
+      increment_guess_count()
+      display_status()
   end
 
   def add_to_guesses letter
