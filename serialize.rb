@@ -19,6 +19,6 @@ class Serialize
 
   def load()
 
-
+  end
 
 end
