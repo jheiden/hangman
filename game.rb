@@ -1,5 +1,6 @@
 require_relative 'word.rb'
 require_relative 'rules.rb'
+require_relative 'serialize.rb'
 require 'json'
 
 class Game
@@ -10,6 +11,7 @@ class Game
     
     @rules = Rules.new
     @word = Word.new
+    @serialize = Serialize.new
     
     @the_word = @word.random_word() 
     @guesses = []
@@ -57,6 +59,7 @@ class Game
     puts "Guess a letter\n"
     guess = gets.chomp.downcase
     if guess == ":save"
+      @serialize.save(@the_word, @guesses, @correct_guesses, @count_guesses, @max_guesses)
       puts "Game saved"
       exit
     end

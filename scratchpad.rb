@@ -23,25 +23,9 @@ class Word
     return @wordbook[rand(wordbook.length - 1)].downcase
   end
 
-  # def save()
-  #   state = create_object()
-  #   File.open('gamestate.json', 'w') do |file|
-  #     file.puts JSON.dump(state)
-  #   end
-  # end
-
-  # def create_object()
-  #   json_obj = {
-  #     word_to_guess: @the_word,
-  #     correct_guesses: @correct_guesses,
-  #     all_guesses: @all_guesses
-  #   }
-  # end
-
-
     def save()
       json = JSON.dump({
-        :word => @the_word,
+        :randoword => @the_word,
         :correct_guesses => @correct_guesses
       })   
       File.open('gamestate.json', 'w') do |file|
@@ -56,12 +40,31 @@ class Word
       puts @name
       end
       
+    def puts_name
+      puts @name
+
+    end
 
 end
 
+class Toad
+
+  def initialize
+    @word = Word.new
+  end
+
+  def change 
+    @word.name = "Toady"
+    @word.puts_name
+  end
+
+
+end
 
 k = Word.new
-puts k.my_obj
+m = Toad.new
+
+m.change()
 
 
 

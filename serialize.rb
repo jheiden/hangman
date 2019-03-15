@@ -1,5 +1,6 @@
 require 'json'
 
+
 class Serialize
 
   def save (random_word, guesses, correct_guesses, count_guesses, max_guesses)
@@ -16,6 +17,7 @@ class Serialize
     end
   end
 
+  def load()
 
 
 
