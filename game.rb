@@ -5,7 +5,7 @@ require 'json'
 
 class Game
 
-  attr_accessor :the_word, :guesses
+  attr_accessor :the_word, :guesses, :correct_guesses, :count_guesses, :max_guesses
 
   def initialize
     
@@ -18,6 +18,7 @@ class Game
     @correct_guesses = create_guess_array()
     @count_guesses = 0
     @max_guesses = 8
+
     start_game()
     # display_status() # start game loop
   end
@@ -26,11 +27,21 @@ class Game
     puts "Welcome to Hangman. Would you like to load a previously saved game? Use :load o/w enter."
     input = gets.chomp
     if input == ":load"
-      # @serialize.load_game()
+      load_game()
       puts "Loading game.."
     else
       display_status()
     end
+  end
+
+  def load_game()
+    data = @serialize.return_json_obj
+    @the_word = data["the_word"]
+    @guesses = data["guesses"]
+    @correct_guesses = data["correct_guesses"]
+    @count_guesses = data["count_guesses"]
+    @max_guesses = data["max_guesses"]
+    display_status()
   end
 
   def display_status
