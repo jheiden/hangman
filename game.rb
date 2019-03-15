@@ -83,6 +83,11 @@ class Game
       display_status()
   end
 
+  def create_guess_array 
+    arr = []
+    arr.fill("_", 0..@the_word.length - 1)
+  end
+
   def add_to_guesses letter
     if @rules.guessed_before?(@guesses, letter)
       puts "Character #{letter} has already been guessed before, try again!"
@@ -92,11 +97,6 @@ class Game
     end
   end
 
-  def create_guess_array 
-    arr = []
-    arr.fill("_", 0..@the_word.length - 1)
-  end
-
   def add_to_correct_guesses letter
     index_array = @rules.correct_guess?(@the_word, letter)
     if index_array.length == 0
@@ -104,10 +104,9 @@ class Game
     else
       index_array.each do |item|
         @correct_guesses[item] = letter
-    end
       end
-  
     end
+  end
 
     def increment_guess_count
       @count_guesses += 1

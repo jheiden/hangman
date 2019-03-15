@@ -18,7 +18,7 @@ class Rules
     return guess_count == guess_max
   end
 
-  def correct_word? (guessed_word) # negated.. 
+  def correct_word? (guessed_word)  
     !guessed_word.include?("_")
   end
 

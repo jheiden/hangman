@@ -26,7 +26,7 @@ class Serialize
   def return_json_obj()
     @json_obj = File.read('gamestate.json')
     return JSON.load(@json_obj)
-    # send data back to caller and destructure object there.2
+    
   end
 
 end
